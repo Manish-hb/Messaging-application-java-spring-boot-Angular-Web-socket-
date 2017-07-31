@@ -1,0 +1,18 @@
+<form style="padding-top: 30px"  ng-submit="login()" class="form" name="loginForm">
+                        <div class="col-md-4">
+                        <div class="form-group">
+                            <input type="text" class="form-control  ng-valid-parse ng-valid-pattern ng-invalid ng-invalid-required" ng-model="name" placeholder="username" required/>
+                        </div> 
+
+                        <!--<div class="form-group">
+                            <input type="password" name="password" pattern=".{3,}" class="form-control  ng-valid-parse ng-valid-pattern ng-invalid ng-invalid-required" ng-model="password" placeholder="password" required/>
+                        </div>-->
+
+                        <div class="form-group">
+                            <!--<button type="submit" ng-disabled="loginForm.password.$invalid"  class="btn btn-success">Login</button>-->
+<!--                            <span class="text-danger">{{ error }}</span>-->
+                            <button type="submit" class="btn btn-success">Login</button>
+                        </div>
+
+                        </div>
+                    </form>

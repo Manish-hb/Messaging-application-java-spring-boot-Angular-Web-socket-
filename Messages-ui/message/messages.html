@@ -1,0 +1,88 @@
+<div class="container-fluid" style="margin-left: initial">
+    <div class="row">
+        <div class="col-md-4">
+            <button class="btn btn-success pull-right" ng-click="createGroupPopUp()">New Group</button>
+            <br><br>
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="comChannel in clist" ng-click="findMessages(comChannel)" ng-class="{active: comChannel.id == selectedCcId}">
+                        <span ng-if="comChannel.group==true">{{comChannel.groupName}}</span>
+                        <span ng-if="comChannel.group!=true">{{comChannel.contact.name}}</span>
+                        <span ng-if="comChannel.unRead>0" class="badge">{{comChannel.unRead}}</span>
+                </li>  
+            </ul>
+        </div>
+        <div class="col-md-8">
+            <a><h4 class="pull-right" ng-click="logOut()">Log Out</h4></a>
+            <div class="panel-group" style="padding-top:38px">
+                <div class="panel panel-primary">
+                <div ng-if="selectedCc.group==false" class="panel-heading">{{selectedContact.name}}</div>
+                <div ng-if="selectedCc.group==true" class="panel-heading">
+                    {{selectedCc.groupName}}
+                    <br>
+                    <span class="badge" ng-repeat=" members in groupMembers">{{members.name}} </span>
+                    <button ng-click="editGroup()" class="btn btn-success btn-xs">Add/Remove</button>
+                </div>
+                <div class="panel-body" id="messagebox" style="height:450px;overflow-y: scroll;">
+                    <div class="row" ng-repeat="chat in chats track by chat.id">
+                        <div style="width:70%" ng-class="{'pull-right':chat.fromUser.userId==user.id}">
+                            <div ng-if="chat.fromUser.userId!=user.id" style="width:70%;margin:10px 0px">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading">{{chat.fromUser.name}}</div>
+                                    <div class="panel-body">{{chat.message}}</div>
+                                </div>    
+                            </div>
+                            <div ng-if="chat.fromUser.userId==user.id" class="pull-right" style="width:70%;margin:10px 0px">
+                                <div class="panel panel-success">
+                                    <div class="panel-heading">You</div>
+                                    <div class="panel-body">{{chat.message}}</div>
+                                </div>    
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+                    <div style="padding:15px">
+                    <div class="row">
+                            <div class="col-md-9">
+                            <textarea class="form-control" ng-model="chattext"></textarea>
+                            </div>
+                            <div class="col-md-3">
+                            <button class="btn btn-success pull-right" ng-click="sendMessage()">Send</button>
+                            </div>
+                        </div>
+                </div>
+                </div>
+                
+                </div>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="newGroup" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Create New Group</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+            <label for="usr">Group Name:</label>
+            <input type="text" class="form-control" ng-model="groupName" >
+        </div>
+        <div>
+            <selectize config='myConfig' options='myOptions' ng-model="myModel"></selectize>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="createGroup()" >Create</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
