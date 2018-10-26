@@ -27,7 +27,6 @@ public class MessageRestController {
 	
 	@RequestMapping(value="/messages/send",method=RequestMethod.POST)
 	public Message sendMessage(@RequestBody Message message){
-		//System.out.println();
 		return messageService.saveMessage(message);
 	}
 	
